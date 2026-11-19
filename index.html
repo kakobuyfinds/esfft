@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<title>ACBuy Spreadsheet | CAFANS Finds, Prices & Buying Checklist</title>
+<meta name="description" content="Explore ACBuy spreadsheet research with real CAFANS catalog entries, category filters, estimated USD prices, sizing checks and a practical order-cost calculator.">
+<meta name="theme-color" content="#103c30">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ACBuy Spreadsheet — Find. Compare. Decide.">
+<meta property="og:description" content="Real CAFANS catalog references, useful product filters and clear buying checks for your next shortlist.">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary">
+<!--
+File: index.html
+Deployment: set an absolute self-referencing canonical URL and og:url after
+the final public domain is known. Do not use cafans.com as this page's canonical.
+
+Indexing has NOT been submitted: no deployed URL or verified webmaster account
+was provided. After deployment, verify the property in Google Search Console
+and Bing Webmaster Tools, submit a sitemap containing the public page URL,
+and request indexing where available. Indexing is not guaranteed.
+
+Research reviewed 2026-11-19:
+https://acbuy.net/
+https://acbuycenter.com/
+https://acbuynet.com/
+https://cafans.com/
+
+Search results vary by location and time; a fixed Google first-page position
+was not independently established. Improvements applied: readable static catalog
+data, working filters, explicit source dates, qualified price information,
+practical comparison guidance and an interactive cost calculation.
+No unsupported QC verification, inventory counts or delivery guarantees.
+-->
+<style>
+:root{--bg:#f5f5ee;--paper:#fffef9;--ink:#17372e;--muted:#5e7068;--green:#103c30;--lime:#d9f58a;--line:#dce2d8;--radius:20px}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+a{color:inherit;text-underline-offset:4px}
+button,input,select{font:inherit}
+button,a,input,select,summary{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid #8bab35;outline-offset:4px}
+.wrap{width:min(1140px,calc(100% - 40px));margin:auto}
+.skip{position:absolute;left:20px;top:-100px;padding:10px;background:white;z-index:10}
+.skip:focus{top:10px}
+header{border-bottom:1px solid var(--line);background:var(--paper)}
+.bar{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+.brand{font-weight:850;letter-spacing:-1px;font-size:23px;text-decoration:none}
+.brand span{display:inline-grid;place-items:center;width:34px;height:34px;background:var(--green);color:var(--lime);border-radius:10px;margin-right:9px;font-size:19px}
+nav{display:flex;gap:24px;font-size:14px}
+nav a{text-decoration:none}
+.hero{background:var(--green);color:#fffef5;position:relative;overflow:hidden}
+.hero:after{content:"";position:absolute;width:460px;height:460px;border:1px solid #ffffff16;border-radius:50%;right:-170px;top:-150px;box-shadow:0 0 0 65px #ffffff05,0 0 0 130px #ffffff03;pointer-events:none}
+.hero-inner{position:relative;z-index:1;padding:78px 0 65px;text-align:center;max-width:850px;margin:auto}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:2px;font-weight:750}
+.hero .eyebrow{color:var(--lime)}
+h1{font-size:clamp(43px,7vw,82px);letter-spacing:-4px;line-height:1.04;margin:24px 0}
+h1 span{color:var(--lime)}
+.hero p{max-width:670px;margin:24px auto;color:#d6e4dc;font-size:18px}
+.actions{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:16px;padding:13px 23px;background:var(--lime);color:var(--green);border:1px solid transparent;border-radius:10px;text-decoration:none;font-weight:750;cursor:pointer}
+.btn.secondary{background:transparent;border-color:#779487;color:white}
+.btn.dark{background:var(--green);color:white}
+.hero .fine{font-size:12px;margin-top:20px;color:#b9cec0}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;border-bottom:1px solid var(--line);padding:20px 0;gap:15px;font-size:13px;color:var(--muted)}
+section{padding:64px 0}
+h2{font-size:clamp(27px,4vw,39px);line-height:1.2;letter-spacing:-1.2px;margin:10px 0 16px}
+h3{font-size:19px;line-height:1.35;margin:0 0 10px}
+p{margin:0 0 17px}
+.muted,.fine{color:var(--muted)}
+.fine{font-size:13px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:25px;margin-bottom:25px}
+.section-head p{max-width:650px;margin-bottom:0}
+.badge{display:inline-block;padding:5px 11px;border-radius:25px;background:#e8eddf;font-size:12px;white-space:nowrap}
+.tools{display:grid;grid-template-columns:1fr 200px 190px;gap:14px;margin-bottom:18px}
+label{font-weight:650;font-size:13px;display:block}
+input,select{width:100%;padding:12px;margin-top:6px;border:1px solid #cdd7cb;border-radius:9px;background:white;color:var(--ink)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px;background:var(--paper)}
+table{border-collapse:collapse;width:100%;min-width:610px;text-align:left}
+th{background:#eaf0e3;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+th,td{padding:17px 20px;border-bottom:1px solid var(--line)}
+tbody tr:last-child td{border-bottom:0}
+td:first-child{font-weight:650}
+td .badge{font-weight:450}
+.price{white-space:nowrap;font-variant-numeric:tabular-nums}
+.table-foot{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-top:16px}
+.empty{padding:30px;text-align:center}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{background:var(--paper);border:1px solid var(--line);padding:26px;border-radius:var(--radius)}
+.number{font:700 13px ui-monospace,monospace;color:#6d805c;margin-bottom:24px}
+.tint{background:#eaf0e3;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:start}
+.checks{list-style:none;padding:0;margin:20px 0 0}
+.checks li{padding:13px 0 13px 28px;position:relative;border-bottom:1px solid #ccd7c5}
+.checks li:before{content:"✓";position:absolute;left:0;font-weight:800}
+.calc{background:var(--paper);padding:28px;border-radius:var(--radius);border:1px solid var(--line)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.total{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:23px;padding-top:20px}
+output{font-size:32px;font-weight:800;letter-spacing:-1px}
+details{border-bottom:1px solid var(--line);padding:20px 0}
+summary{font-size:17px;font-weight:650;cursor:pointer}
+details p{padding-top:14px;margin:0;max-width:850px;color:var(--muted)}
+.end{text-align:center;padding:45px 25px;background:var(--green);color:white;border-radius:24px}
+.end p{color:#cedfd3;max-width:640px;margin:15px auto}
+footer{padding:35px 0;font-size:12px;color:var(--muted)}
+.footer-grid{display:grid;grid-template-columns:1fr 1fr;gap:35px}
+footer p{margin:0 0 9px}
+[hidden]{display:none!important}
+@media(max-width:760px){
+.wrap{width:calc(100% - 30px)}nav{gap:13px;font-size:12px}.brand{font-size:18px}.brand span{display:none}
+.hero-inner{padding:58px 0 45px}h1{letter-spacing:-2.5px}.hero p{font-size:16px}
+.trust{font-size:11px;gap:8px}.section-head{display:block}.section-head .badge{margin-top:14px}
+section{padding:43px 0}.tools{grid-template-columns:1fr 1fr}.tools label:first-child{grid-column:1/-1}
+.grid,.two,.footer-grid{grid-template-columns:1fr}.two{gap:25px}.grid{gap:12px}
+.table-foot{align-items:start;flex-direction:column}.fields{gap:12px}.calc{padding:20px}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "name":"ACBuy Spreadsheet | CAFANS Finds, Prices & Buying Checklist",
+      "description":"Independent product research with a dated CAFANS catalog sample, category filters and a shopping cost calculator.",
+      "inLanguage":"en",
+      "about":{"@type":"Thing","name":"ACBuy spreadsheet"},
+      "citation":["https://cafans.com/"],
+      "hasPart":{"@id":"#faq"}
+    },
+    {
+      "@type":"FAQPage",
+      "@id":"#faq",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"What is an ACBuy spreadsheet?",
+          "acceptedAnswer":{"@type":"Answer","text":"An ACBuy spreadsheet is a product research list used to organize finds, source links, prices and buying notes. This independent page provides a dated CAFANS catalog sample rather than an official ACBuy inventory feed."}
+        },
+        {
+          "@type":"Question",
+          "name":"Where do the two shopping buttons go?",
+          "acceptedAnswer":{"@type":"Answer","text":"Both ACBuy spreadsheet and Buy it now open https://cafans.com. They open the catalog rather than placing an order or completing payment."}
+        },
+        {
+          "@type":"Question",
+          "name":"Are the displayed prices the final delivered cost?",
+          "acceptedAnswer":{"@type":"Answer","text":"No. Displayed USD amounts are estimates observed on CAFANS on November 19, 2026. Confirm current item prices, fees, delivery charges and any applicable import charges before paying."}
+        },
+        {
+          "@type":"Question",
+          "name":"Can every listed item be ordered through ACBuy?",
+          "acceptedAnswer":{"@type":"Answer","text":"This page does not confirm current ACBuy purchasing support. Confirm that your chosen agent accepts the exact source listing and destination before placing an order."}
+        }
+      ]
+    }
+  ]
+}
+</script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/esfft/">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+<div class="wrap bar">
+<a class="brand" href="https://cafans.com"><span>A</span>THE FINDS INDEX</a>
+<nav aria-label="Main navigation">
+<a href="#catalog">Catalog</a>
+<a href="#guide">Buying guide</a>
+<a href="#budget">Budget</a>
+<a href="#faq">FAQ</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<div class="hero">
+<div class="wrap">
+<div class="hero-inner">
+<div class="eyebrow">Independent discovery · A clearer shortlist</div>
+<h1>ACBuy spreadsheet.<br><span>Find your next pick.</span></h1>
+<p>Explore real CAFANS catalog references, compare estimated prices and keep sizing, source links and shipping costs in view before you decide.</p>
+<div class="actions">
+<a class="btn" href="https://cafans.com">ACBuy spreadsheet <span aria-hidden="true">↗</span></a>
+<a class="btn secondary" href="https://cafans.com">Buy it now <span aria-hidden="true">↗</span></a>
+</div>
+<p class="fine">Both buttons open CAFANS. Independent guide; no affiliation with ACBuy is claimed.</p>
+</div>
+</div>
+</div>
+
+<div class="wrap">
+<div class="trust">
+<span>Real catalog references</span>
+<span>Transparent USD estimates</span>
+<span>Practical buying checks</span>
+</div>
+
+<section aria-labelledby="intro-title">
+<div class="two">
+<div>
+<div class="eyebrow">Start with the details</div>
+<h2 id="intro-title">A product list that helps you compare.</h2>
+</div>
+<div>
+<p>An <strong>ACBuy spreadsheet</strong> organizes product finds and research notes in one place. Useful entries connect an exact item to its source, selected variant, price and unanswered questions.</p>
+<p class="muted">Here, the starting point is a dated sample from CAFANS. Filter the entries below, then open CAFANS to review the current listing. Catalog inclusion does not establish quality, authenticity, availability or agent support.</p>
+</div>
+</div>
+</section>
+
+<section id="catalog" aria-labelledby="catalog-title" style="padding-top:0">
+<div class="section-head">
+<div>
+<div class="eyebrow">The catalog edit</div>
+<h2 id="catalog-title">Real finds from CAFANS</h2>
+<p class="muted">A manually imported homepage sample observed on <time datetime="2026-11-19">November 19, 2026</time>. Prices are estimated USD amounts, excluding delivery and other charges. This sample does not update automatically.</p>
+</div>
+<span class="badge">12 catalog entries</span>
+</div>
+
+<div class="tools">
+<label>Find a product
+<input id="search" type="search" placeholder="Try hoodie, slides or jacket…" autocomplete="off"></label>
+<label>Category
+<select id="category">
+<option value="all">All categories</option>
+<option value="Shoes">Shoes</option>
+<option value="Hoodies / Sweaters">Hoodies / Sweaters</option>
+<option value="T-Shirts">T-Shirts</option>
+<option value="Jackets">Jackets</option>
+</select></label>
+<label>Sort entries
+<select id="sort">
+<option value="original">Catalog order</option>
+<option value="low">Price: low to high</option>
+<option value="high">Price: high to low</option>
+</select></label>
+</div>
+
+<div class="table-wrap">
+<table>
+<caption class="fine" style="text-align:left;padding:13px 20px">CAFANS catalog sample · Estimated item prices in USD</caption>
+<thead><tr><th scope="col">Product</th><th scope="col">Category</th><th scope="col">Est. USD</th></tr></thead>
+<tbody id="products">
+<tr data-category="Shoes" data-price="62.36"><td>Leather Slides</td><td><span class="badge">Shoes</span></td><td class="price">$62.36</td></tr>
+<tr data-category="Shoes" data-price="46.67"><td>Platform Slides</td><td><span class="badge">Shoes</span></td><td class="price">$46.67</td></tr>
+<tr data-category="Shoes" data-price="66.50"><td>Heels</td><td><span class="badge">Shoes</span></td><td class="price">$66.50</td></tr>
+<tr data-category="Hoodies / Sweaters" data-price="27.50"><td>Sweatshirt</td><td><span class="badge">Hoodies / Sweaters</span></td><td class="price">$27.50</td></tr>
+<tr data-category="Hoodies / Sweaters" data-price="37.22"><td>Thug Club - Rock Hoodie</td><td><span class="badge">Hoodies / Sweaters</span></td><td class="price">$37.22</td></tr>
+<tr data-category="Hoodies / Sweaters" data-price="27.50"><td>Corteiz Hoodie</td><td><span class="badge">Hoodies / Sweaters</span></td><td class="price">$27.50</td></tr>
+<tr data-category="T-Shirts" data-price="22.92"><td>Kanye West Yeezy Bully Black Short Sleeve T-Shirt</td><td><span class="badge">T-Shirts</span></td><td class="price">$22.92</td></tr>
+<tr data-category="T-Shirts" data-price="32.64"><td>Unisex Embroidered Oversized T-Shirt</td><td><span class="badge">T-Shirts</span></td><td class="price">$32.64</td></tr>
+<tr data-category="T-Shirts" data-price="29.72"><td>Unisex T-Shirt</td><td><span class="badge">T-Shirts</span></td><td class="price">$29.72</td></tr>
+<tr data-category="Jackets" data-price="42.78"><td>Corteiz Jacket</td><td><span class="badge">Jackets</span></td><td class="price">$42.78</td></tr>
+<tr data-category="Jackets" data-price="84.54"><td>Jacket</td><td><span class="badge">Jackets</span></td><td class="price">$84.54</td></tr>
+<tr data-category="Jackets" data-price="27.50"><td>Jacket - 0608260</td><td><span class="badge">Jackets</span></td><td class="price">$27.50</td></tr>
+</tbody>
+</table>
+<p id="empty" class="empty" hidden>No entries match. Try another product name or category.</p>
+</div>
+<div class="table-foot">
+<p id="count" role="status" aria-live="polite" class="fine">Showing 12 of 12 entries.</p>
+<a class="btn dark" href="https://cafans.com">ACBuy spreadsheet <span aria-hidden="true">↗</span></a>
+</div>
+<p class="fine">Source: <a href="https://cafans.com">CAFANS homepage catalog</a>. Find an item by its displayed name on CAFANS and confirm its current details before ordering.</p>
+<noscript><p class="fine">All catalog entries are visible. Filtering and the calculator require JavaScript.</p></noscript>
+</section>
+</div>
+
+<div class="tint">
+<section id="guide" class="wrap" aria-labelledby="guide-title">
+<div class="eyebrow">From discovery to decision</div>
+<h2 id="guide-title">How to use your ACBuy spreadsheet shortlist</h2>
+<p class="muted">A good shortlist makes missing information visible before money changes hands.</p>
+<div class="grid">
+<article class="card">
+<div class="number">01 / DISCOVER</div>
+<h3>Identify the exact item</h3>
+<p class="muted">Search the catalog, open the current listing and record the seller, source URL, color, size and model. Similar names can describe different products or variants.</p>
+</article>
+<article class="card">
+<div class="number">02 / COMPARE</div>
+<h3>Resolve fit and quality questions</h3>
+<p class="muted">Compare measurements with something you own. Ask whether inspection photos are available for your order. Reference QC photos may show another batch or variant.</p>
+</article>
+<article class="card">
+<div class="number">03 / CONFIRM</div>
+<h3>Check support and the total</h3>
+<p class="muted">Confirm that your selected agent can buy the exact listing. Review payment terms, return limits, storage deadlines and a destination-specific shipping quote.</p>
+</article>
+</div>
+</section>
+</div>
+
+<div class="wrap">
+<section id="budget" aria-labelledby="budget-title">
+<div class="two">
+<div>
+<div class="eyebrow">Price is only the beginning</div>
+<h2 id="budget-title">Build a more complete order budget.</h2>
+<p class="muted">Use your own quotes in USD. Blank fields are treated as zero for arithmetic only; a blank charge is still unknown until confirmed.</p>
+<ul class="checks">
+<li><strong>Shoes:</strong> confirm the sizing system, width and relevant measurements.</li>
+<li><strong>Clothing:</strong> compare chest, length, waist or inseam in consistent units.</li>
+<li><strong>QC photos:</strong> check the selected variant, visible condition and any missing views.</li>
+<li><strong>Shipping:</strong> ask about billable weight, packaging, exclusions and quote validity.</li>
+</ul>
+</div>
+<form class="calc" id="calculator">
+<h3>Order-cost calculator</h3>
+<p class="fine">Planning estimate · USD · Not a shipping quote</p>
+<div class="fields">
+<label>Items subtotal ($)
+<input name="items" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+<label>Domestic delivery ($)
+<input name="domestic" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+<label>Agent / payment fees ($)
+<input name="fees" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+<label>International shipping ($)
+<input name="shipping" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+<label>Import charges, if quoted ($)
+<input name="imports" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+<label>Other confirmed charges ($)
+<input name="other" type="number" min="0" max="1000000" step="0.01" placeholder="0.00" inputmode="decimal"></label>
+</div>
+<div class="total"><span>Entered-cost total</span><output id="total" aria-live="polite">$0.00</output></div>
+<p id="budget-note" class="fine">Enter confirmed quotes to begin. Unknown costs are not included.</p>
+</form>
+</div>
+</section>
+
+<section aria-labelledby="record-title" style="padding-top:0">
+<div class="eyebrow">Keep the useful evidence</div>
+<h2 id="record-title">What to save beside every product link</h2>
+<div class="grid">
+<article class="card"><h3>Source & variant</h3><p class="muted">Save the original marketplace URL when available, seller name, model reference, size, color and date checked. An agent-specific link may be less useful if platform support changes.</p></article>
+<article class="card"><h3>Measurements & observations</h3><p class="muted">Separate seller claims from your own observations. Add measurement units and concrete questions such as “confirm sleeve length” rather than a vague quality score.</p></article>
+<article class="card"><h3>Quote & order terms</h3><p class="muted">Keep the item currency, exchange-rate quote, service fees and shipping estimate. Record return conditions and the source of each answer so you can revisit the decision.</p></article>
+</div>
+</section>
+
+<section id="faq" aria-labelledby="faq-title" style="padding-top:0">
+<div class="eyebrow">A little more clarity</div>
+<h2 id="faq-title">ACBuy spreadsheet FAQ</h2>
+<details open>
+<summary>What is an ACBuy spreadsheet?</summary>
+<p>An ACBuy spreadsheet is a product research list used to organize finds, source links, prices and buying notes. This independent page provides a dated CAFANS catalog sample rather than an official ACBuy inventory feed.</p>
+</details>
+<details>
+<summary>Where do the two shopping buttons go?</summary>
+<p>Both “ACBuy spreadsheet” and “Buy it now” open https://cafans.com. They open the catalog rather than placing an order or completing payment.</p>
+</details>
+<details>
+<summary>Are the displayed prices the final delivered cost?</summary>
+<p>No. Displayed USD amounts are estimates observed on CAFANS on November 19, 2026. Confirm current item prices, fees, delivery charges and any applicable import charges before paying.</p>
+</details>
+<details>
+<summary>Can every listed item be ordered through ACBuy?</summary>
+<p>This page does not confirm current ACBuy purchasing support. Confirm that your chosen agent accepts the exact source listing and destination before placing an order.</p>
+</details>
+<details>
+<summary>Are these products QC verified?</summary>
+<p>No independent product inspection was performed for this page. Catalog inclusion is a discovery reference. Request inspection images tied to your specific order and review their limits before authorizing shipment.</p>
+</details>
+<details>
+<summary>Does this page update automatically?</summary>
+<p>No. The table is a static import of 12 CAFANS homepage entries checked on November 19, 2026. Search and category filters work locally on this sample. Open CAFANS for current listings and prices.</p>
+</details>
+<details>
+<summary>How do I handle an unavailable or changed listing?</summary>
+<p>Mark the entry unavailable and keep its original source URL and variant notes for reference. Check any replacement independently; a similar photograph or title does not establish that it is the same product.</p>
+</details>
+</section>
+
+<div class="end">
+<div class="eyebrow">Your next shortlist starts here</div>
+<h2>Find something worth a closer look.</h2>
+<p>Browse the full CAFANS catalog, check the exact listing and make your next decision with the details in front of you.</p>
+<div class="actions">
+<a class="btn" href="https://cafans.com">ACBuy spreadsheet ↗</a>
+<a class="btn secondary" href="https://cafans.com">Buy it now ↗</a>
+</div>
+</div>
+
+<footer>
+<div class="footer-grid">
+<div>
+<p><strong>THE FINDS INDEX · ACBuy spreadsheet</strong></p>
+<p>Independent product discovery and buying guidance. ACBuy and other names belong to their respective owners. No official affiliation or endorsement is claimed.</p>
+</div>
+<div>
+<p>Catalog source: <a href="https://cafans.com">CAFANS</a> · Sample checked November 19, 2026.</p>
+<p>This page does not collect payments or process orders. Seller listings and your chosen agent determine current availability, purchasing support and transaction terms.</p>
+</div>
+</div>
+</footer>
+</div>
+</main>
+
+<script>
+(function(){
+"use strict";
+var body=document.getElementById("products");
+var rows=Array.from(body.rows);
+var search=document.getElementById("search");
+var category=document.getElementById("category");
+var sort=document.getElementById("sort");
+function filter(){
+var term=search.value.trim().toLocaleLowerCase();
+var selected=category.value;
+var arranged=rows.slice();
+if(sort.value==="low") arranged.sort(function(a,b){return Number(a.dataset.price)-Number(b.dataset.price)});
+if(sort.value==="high") arranged.sort(function(a,b){return Number(b.dataset.price)-Number(a.dataset.price)});
+var count=0;
+arranged.forEach(function(row){
+var match=row.cells[0].textContent.toLocaleLowerCase().includes(term);
+var cat=selected==="all"||row.dataset.category===selected;
+row.hidden=!(match&&cat);
+if(!row.hidden) count++;
+body.appendChild(row);
+});
+document.getElementById("count").textContent="Showing "+count+" of "+rows.length+" entries.";
+document.getElementById("empty").hidden=count!==0;
+}
+search.addEventListener("input",filter);
+category.addEventListener("change",filter);
+sort.addEventListener("change",filter);
+
+var form=document.getElementById("calculator");
+var inputs=Array.from(form.querySelectorAll("input"));
+var formatter=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"});
+function calculate(){
+var total=0,filled=0,invalid=false;
+inputs.forEach(function(input){
+if(input.value!==""){
+filled++;
+if(!input.validity.valid){invalid=true;return}
+total+=Number(input.value);
+}
+});
+document.getElementById("total").textContent=invalid?"—":formatter.format(total);
+document.getElementById("budget-note").textContent=invalid
+?"Use non-negative amounts up to $1,000,000, with no more than two decimal places."
+:filled===0?"Enter confirmed quotes to begin. Unknown costs are not included."
+:filled+" of "+inputs.length+" cost fields entered. Confirm any remaining charges before paying.";
+}
+form.addEventListener("input",calculate);
+form.addEventListener("submit",function(event){event.preventDefault();calculate()});
+})();
+</script>
+</body>
+</html>
